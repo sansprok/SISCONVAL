@@ -33,10 +33,16 @@ namespace SISCONVAL
     partial void InsertNOTIFICADOR(NOTIFICADOR instance);
     partial void UpdateNOTIFICADOR(NOTIFICADOR instance);
     partial void DeleteNOTIFICADOR(NOTIFICADOR instance);
+    partial void InsertAUXILIAR(AUXILIAR instance);
+    partial void UpdateAUXILIAR(AUXILIAR instance);
+    partial void DeleteAUXILIAR(AUXILIAR instance);
+    partial void InsertREQCOACGEN(REQCOACGEN instance);
+    partial void UpdateREQCOACGEN(REQCOACGEN instance);
+    partial void DeleteREQCOACGEN(REQCOACGEN instance);
     #endregion
 		
 		public ValoresDataContext() : 
-				base(global::SISCONVAL.Properties.Settings.Default.AUXWANCHAQConnectionString, mappingSource)
+				base(global::SISCONVAL.Properties.Settings.Default.AUXWANCHAQConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -65,14 +71,6 @@ namespace SISCONVAL
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<ESTADORD> ESTADORD
-		{
-			get
-			{
-				return this.GetTable<ESTADORD>();
-			}
-		}
-		
 		public System.Data.Linq.Table<NOTIFICADOR> NOTIFICADOR
 		{
 			get
@@ -81,11 +79,35 @@ namespace SISCONVAL
 			}
 		}
 		
-		public System.Data.Linq.Table<VALORESDET> VALORESDET
+		public System.Data.Linq.Table<CALIFICACION> CALIFICACION
 		{
 			get
 			{
-				return this.GetTable<VALORESDET>();
+				return this.GetTable<CALIFICACION>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ESTADOREQCOAC> ESTADOREQCOAC
+		{
+			get
+			{
+				return this.GetTable<ESTADOREQCOAC>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AUXILIAR> AUXILIAR
+		{
+			get
+			{
+				return this.GetTable<AUXILIAR>();
+			}
+		}
+		
+		public System.Data.Linq.Table<REQCOACGEN> REQCOACGEN
+		{
+			get
+			{
+				return this.GetTable<REQCOACGEN>();
 			}
 		}
 		
@@ -97,56 +119,70 @@ namespace SISCONVAL
 			}
 		}
 		
+		public System.Data.Linq.Table<VALORESDET> VALORESDET
+		{
+			get
+			{
+				return this.GetTable<VALORESDET>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ORDENESPAGOGEN> ORDENESPAGOGEN
+		{
+			get
+			{
+				return this.GetTable<ORDENESPAGOGEN>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ESTADORD> ESTADORD
+		{
+			get
+			{
+				return this.GetTable<ESTADORD>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PA_CONTROLDEUDA_MODIFICARVALORCAB")]
 		public int PA_CONTROLDEUDA_MODIFICARVALORCAB([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIORESOLUCION", DbType="Int")] System.Nullable<int> fAANIORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNNRORESOLUCION", DbType="Int")] System.Nullable<int> fNNRORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAESTADOVALOR", DbType="NVarChar(1)")] string fAESTADOVALOR, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FMOBSERVACION", DbType="VarChar(255)")] string fMOBSERVACION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FDFECHANOTIF", DbType="Date")] System.Nullable<System.DateTime> fDFECHANOTIF, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FDFECHAVENCI", DbType="Date")] System.Nullable<System.DateTime> fDFECHAVENCI, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNIDNOTIFICADOR", DbType="Int")] System.Nullable<int> fNIDNOTIFICADOR)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fAANIORESOLUCION, fNNRORESOLUCION, fAESTADOVALOR, fMOBSERVACION, fDFECHANOTIF, fDFECHAVENCI, fNIDNOTIFICADOR);
 			return ((int)(result.ReturnValue));
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ESTADORD")]
-	public partial class ESTADORD
-	{
 		
-		private string _facodestadord;
-		
-		private string _fadesestado;
-		
-		public ESTADORD()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL_PREVIEW")]
+		public ISingleResult<PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL_PREVIEWResult> PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL_PREVIEW([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIORESOLUCION", DbType="Int")] System.Nullable<int> fAANIORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAIDCIUDADANO", DbType="VarChar(9)")] string fAIDCIUDADANO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIODESDE", DbType="Int")] System.Nullable<int> fAANIODESDE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIOHASTA", DbType="Int")] System.Nullable<int> fAANIOHASTA)
 		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fAANIORESOLUCION, fAIDCIUDADANO, fAANIODESDE, fAANIOHASTA);
+			return ((ISingleResult<PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL_PREVIEWResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facodestadord", DbType="VarChar(1)")]
-		public string facodestadord
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PA_COAC_MODIFICARREQGEN")]
+		public int PA_COAC_MODIFICARREQGEN([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAIDCIUDADANO", DbType="VarChar(9)")] string fAIDCIUDADANO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FANRORESOLUCION", DbType="VarChar(4)")] string fANRORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FANROEXPED", DbType="VarChar(4)")] string fANROEXPED, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIOEXPED", DbType="VarChar(4)")] string fAANIOEXPED, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNCODAUXILIAR", DbType="Int")] System.Nullable<int> fNCODAUXILIAR, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNCODNOTIFICA", DbType="Int")] System.Nullable<int> fNCODNOTIFICA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIORESOLUCION", DbType="VarChar(4)")] string fAANIORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAREQCALIFICA", DbType="VarChar(1)")] string fAREQCALIFICA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNCOSPROCE", DbType="Decimal(12,2)")] System.Nullable<decimal> fNCOSPROCE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAOBSERVACION", DbType="VarChar(500)")] string fAOBSERVACION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FDFECENVIO", DbType="DateTime")] System.Nullable<System.DateTime> fDFECENVIO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FDFECNOTIF", DbType="DateTime")] System.Nullable<System.DateTime> fDFECNOTIF, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FDFECVENCI", DbType="DateTime")] System.Nullable<System.DateTime> fDFECVENCI)
 		{
-			get
-			{
-				return this._facodestadord;
-			}
-			set
-			{
-				if ((this._facodestadord != value))
-				{
-					this._facodestadord = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fAIDCIUDADANO, fANRORESOLUCION, fANROEXPED, fAANIOEXPED, fNCODAUXILIAR, fNCODNOTIFICA, fAANIORESOLUCION, fAREQCALIFICA, fNCOSPROCE, fAOBSERVACION, fDFECENVIO, fDFECNOTIF, fDFECVENCI);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fadesestado", DbType="VarChar(200)")]
-		public string fadesestado
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PA_COAC_GARGARVALORES")]
+		public int PA_COAC_GARGARVALORES([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNNRORESOLUCION", DbType="Int")] System.Nullable<int> fNNRORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIORESOLUCION", DbType="VarChar(4)")] string fAANIORESOLUCION)
 		{
-			get
-			{
-				return this._fadesestado;
-			}
-			set
-			{
-				if ((this._fadesestado != value))
-				{
-					this._fadesestado = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fNNRORESOLUCION, fAANIORESOLUCION);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL")]
+		public int PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIORESOLUCION", DbType="Int")] System.Nullable<int> fAANIORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAIDCIUDADANO", DbType="VarChar(9)")] string fAIDCIUDADANO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIODESDE", DbType="Int")] System.Nullable<int> fAANIODESDE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIOHASTA", DbType="Int")] System.Nullable<int> fAANIOHASTA, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAOPERADOR", DbType="VarChar(50)")] string fAOPERADOR)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fAANIORESOLUCION, fAIDCIUDADANO, fAANIODESDE, fAANIOHASTA, fAOPERADOR);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PA_CONTROLDEUDA_ACTUALIZARVALOR_INDIVIDUAL")]
+		public int PA_CONTROLDEUDA_ACTUALIZARVALOR_INDIVIDUAL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIORESOLUCION", DbType="Int")] System.Nullable<int> fAANIORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAIDCIUDADANO", DbType="VarChar(9)")] string fAIDCIUDADANO, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FNNRORESOLUCION", DbType="Int")] System.Nullable<int> fNNRORESOLUCION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAOPERADOR", DbType="VarChar(50)")] string fAOPERADOR, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIODESDE", DbType="Int")] System.Nullable<int> fAANIODESDE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FAANIOHASTA", DbType="Int")] System.Nullable<int> fAANIOHASTA)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fAANIORESOLUCION, fAIDCIUDADANO, fNNRORESOLUCION, fAOPERADOR, fAANIODESDE, fAANIOHASTA);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -260,6 +296,1399 @@ namespace SISCONVAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CALIFICACION")]
+	public partial class CALIFICACION
+	{
+		
+		private string _FACODCALIFI;
+		
+		private string _FADESCALIFI;
+		
+		public CALIFICACION()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACODCALIFI", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string FACODCALIFI
+		{
+			get
+			{
+				return this._FACODCALIFI;
+			}
+			set
+			{
+				if ((this._FACODCALIFI != value))
+				{
+					this._FACODCALIFI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADESCALIFI", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string FADESCALIFI
+		{
+			get
+			{
+				return this._FADESCALIFI;
+			}
+			set
+			{
+				if ((this._FADESCALIFI != value))
+				{
+					this._FADESCALIFI = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ESTADOREQCOAC")]
+	public partial class ESTADOREQCOAC
+	{
+		
+		private string _FACODESTADOREQ;
+		
+		private string _FADESESTADOREQ;
+		
+		public ESTADOREQCOAC()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACODESTADOREQ", DbType="VarChar(1)")]
+		public string FACODESTADOREQ
+		{
+			get
+			{
+				return this._FACODESTADOREQ;
+			}
+			set
+			{
+				if ((this._FACODESTADOREQ != value))
+				{
+					this._FACODESTADOREQ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADESESTADOREQ", DbType="VarChar(200)")]
+		public string FADESESTADOREQ
+		{
+			get
+			{
+				return this._FADESESTADOREQ;
+			}
+			set
+			{
+				if ((this._FADESESTADOREQ != value))
+				{
+					this._FADESESTADOREQ = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AUXILIAR")]
+	public partial class AUXILIAR : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _FACODAUX;
+		
+		private string _FANOMAUXI;
+		
+		private string _FANOMCORT;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFACODAUXChanging(int value);
+    partial void OnFACODAUXChanged();
+    partial void OnFANOMAUXIChanging(string value);
+    partial void OnFANOMAUXIChanged();
+    partial void OnFANOMCORTChanging(string value);
+    partial void OnFANOMCORTChanged();
+    #endregion
+		
+		public AUXILIAR()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACODAUX", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int FACODAUX
+		{
+			get
+			{
+				return this._FACODAUX;
+			}
+			set
+			{
+				if ((this._FACODAUX != value))
+				{
+					this.OnFACODAUXChanging(value);
+					this.SendPropertyChanging();
+					this._FACODAUX = value;
+					this.SendPropertyChanged("FACODAUX");
+					this.OnFACODAUXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FANOMAUXI", DbType="VarChar(200)")]
+		public string FANOMAUXI
+		{
+			get
+			{
+				return this._FANOMAUXI;
+			}
+			set
+			{
+				if ((this._FANOMAUXI != value))
+				{
+					this.OnFANOMAUXIChanging(value);
+					this.SendPropertyChanging();
+					this._FANOMAUXI = value;
+					this.SendPropertyChanged("FANOMAUXI");
+					this.OnFANOMAUXIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FANOMCORT", DbType="VarChar(25)")]
+		public string FANOMCORT
+		{
+			get
+			{
+				return this._FANOMCORT;
+			}
+			set
+			{
+				if ((this._FANOMCORT != value))
+				{
+					this.OnFANOMCORTChanging(value);
+					this.SendPropertyChanging();
+					this._FANOMCORT = value;
+					this.SendPropertyChanged("FANOMCORT");
+					this.OnFANOMCORTChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.REQCOACGEN")]
+	public partial class REQCOACGEN : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _FAIDCIUDADANO;
+		
+		private string _FAAPELLIDOSYNOMBRES;
+		
+		private string _FANROEXPED;
+		
+		private string _FAANIOEXPED;
+		
+		private int _FNCODAUXILIAR;
+		
+		private System.Nullable<int> _FNCODNOTIFICADOR;
+		
+		private string _FANRORESOLUCION;
+		
+		private string _FAANIORESOLUCION;
+		
+		private string _FAANIOINICIO;
+		
+		private string _FAANIOFIN;
+		
+		private string _FAREQESTADO;
+		
+		private string _FAREQCALIFICA;
+		
+		private System.Nullable<decimal> _FNIMPINSOLUTO;
+		
+		private System.Nullable<decimal> _FNIMPGASADMIN;
+		
+		private System.Nullable<decimal> _FNIMPMORA;
+		
+		private System.Nullable<decimal> _FNIMPCOACT;
+		
+		private System.Nullable<decimal> _FNCOSPROCE;
+		
+		private string _FADOMFISCAL;
+		
+		private string _FAREFERENC;
+		
+		private string _FAOBSERVACION;
+		
+		private System.Nullable<System.DateTime> _FDFECENVIO;
+		
+		private System.Nullable<System.DateTime> _FDFECRECEP;
+		
+		private System.Nullable<System.DateTime> _FDFECCALIF;
+		
+		private System.Nullable<System.DateTime> _FDFECIMPRE;
+		
+		private System.Nullable<System.DateTime> _FDFECMODIF;
+		
+		private System.Nullable<System.DateTime> _FDFECNOTIF;
+		
+		private System.Nullable<System.DateTime> _FDFECVENCI;
+		
+		private System.Nullable<int> _FNDIASTRANS;
+		
+		private string _FADELETE;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFAIDCIUDADANOChanging(string value);
+    partial void OnFAIDCIUDADANOChanged();
+    partial void OnFAAPELLIDOSYNOMBRESChanging(string value);
+    partial void OnFAAPELLIDOSYNOMBRESChanged();
+    partial void OnFANROEXPEDChanging(string value);
+    partial void OnFANROEXPEDChanged();
+    partial void OnFAANIOEXPEDChanging(string value);
+    partial void OnFAANIOEXPEDChanged();
+    partial void OnFNCODAUXILIARChanging(int value);
+    partial void OnFNCODAUXILIARChanged();
+    partial void OnFNCODNOTIFICADORChanging(System.Nullable<int> value);
+    partial void OnFNCODNOTIFICADORChanged();
+    partial void OnFANRORESOLUCIONChanging(string value);
+    partial void OnFANRORESOLUCIONChanged();
+    partial void OnFAANIORESOLUCIONChanging(string value);
+    partial void OnFAANIORESOLUCIONChanged();
+    partial void OnFAANIOINICIOChanging(string value);
+    partial void OnFAANIOINICIOChanged();
+    partial void OnFAANIOFINChanging(string value);
+    partial void OnFAANIOFINChanged();
+    partial void OnFAREQESTADOChanging(string value);
+    partial void OnFAREQESTADOChanged();
+    partial void OnFAREQCALIFICAChanging(string value);
+    partial void OnFAREQCALIFICAChanged();
+    partial void OnFNIMPINSOLUTOChanging(System.Nullable<decimal> value);
+    partial void OnFNIMPINSOLUTOChanged();
+    partial void OnFNIMPGASADMINChanging(System.Nullable<decimal> value);
+    partial void OnFNIMPGASADMINChanged();
+    partial void OnFNIMPMORAChanging(System.Nullable<decimal> value);
+    partial void OnFNIMPMORAChanged();
+    partial void OnFNIMPCOACTChanging(System.Nullable<decimal> value);
+    partial void OnFNIMPCOACTChanged();
+    partial void OnFNCOSPROCEChanging(System.Nullable<decimal> value);
+    partial void OnFNCOSPROCEChanged();
+    partial void OnFADOMFISCALChanging(string value);
+    partial void OnFADOMFISCALChanged();
+    partial void OnFAREFERENCChanging(string value);
+    partial void OnFAREFERENCChanged();
+    partial void OnFAOBSERVACIONChanging(string value);
+    partial void OnFAOBSERVACIONChanged();
+    partial void OnFDFECENVIOChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECENVIOChanged();
+    partial void OnFDFECRECEPChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECRECEPChanged();
+    partial void OnFDFECCALIFChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECCALIFChanged();
+    partial void OnFDFECIMPREChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECIMPREChanged();
+    partial void OnFDFECMODIFChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECMODIFChanged();
+    partial void OnFDFECNOTIFChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECNOTIFChanged();
+    partial void OnFDFECVENCIChanging(System.Nullable<System.DateTime> value);
+    partial void OnFDFECVENCIChanged();
+    partial void OnFNDIASTRANSChanging(System.Nullable<int> value);
+    partial void OnFNDIASTRANSChanged();
+    partial void OnFADELETEChanging(string value);
+    partial void OnFADELETEChanged();
+    #endregion
+		
+		public REQCOACGEN()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAIDCIUDADANO", DbType="VarChar(9) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FAIDCIUDADANO
+		{
+			get
+			{
+				return this._FAIDCIUDADANO;
+			}
+			set
+			{
+				if ((this._FAIDCIUDADANO != value))
+				{
+					this.OnFAIDCIUDADANOChanging(value);
+					this.SendPropertyChanging();
+					this._FAIDCIUDADANO = value;
+					this.SendPropertyChanged("FAIDCIUDADANO");
+					this.OnFAIDCIUDADANOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAAPELLIDOSYNOMBRES", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string FAAPELLIDOSYNOMBRES
+		{
+			get
+			{
+				return this._FAAPELLIDOSYNOMBRES;
+			}
+			set
+			{
+				if ((this._FAAPELLIDOSYNOMBRES != value))
+				{
+					this.OnFAAPELLIDOSYNOMBRESChanging(value);
+					this.SendPropertyChanging();
+					this._FAAPELLIDOSYNOMBRES = value;
+					this.SendPropertyChanged("FAAPELLIDOSYNOMBRES");
+					this.OnFAAPELLIDOSYNOMBRESChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FANROEXPED", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FANROEXPED
+		{
+			get
+			{
+				return this._FANROEXPED;
+			}
+			set
+			{
+				if ((this._FANROEXPED != value))
+				{
+					this.OnFANROEXPEDChanging(value);
+					this.SendPropertyChanging();
+					this._FANROEXPED = value;
+					this.SendPropertyChanged("FANROEXPED");
+					this.OnFANROEXPEDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIOEXPED", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FAANIOEXPED
+		{
+			get
+			{
+				return this._FAANIOEXPED;
+			}
+			set
+			{
+				if ((this._FAANIOEXPED != value))
+				{
+					this.OnFAANIOEXPEDChanging(value);
+					this.SendPropertyChanging();
+					this._FAANIOEXPED = value;
+					this.SendPropertyChanged("FAANIOEXPED");
+					this.OnFAANIOEXPEDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNCODAUXILIAR", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int FNCODAUXILIAR
+		{
+			get
+			{
+				return this._FNCODAUXILIAR;
+			}
+			set
+			{
+				if ((this._FNCODAUXILIAR != value))
+				{
+					this.OnFNCODAUXILIARChanging(value);
+					this.SendPropertyChanging();
+					this._FNCODAUXILIAR = value;
+					this.SendPropertyChanged("FNCODAUXILIAR");
+					this.OnFNCODAUXILIARChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNCODNOTIFICADOR", DbType="Int")]
+		public System.Nullable<int> FNCODNOTIFICADOR
+		{
+			get
+			{
+				return this._FNCODNOTIFICADOR;
+			}
+			set
+			{
+				if ((this._FNCODNOTIFICADOR != value))
+				{
+					this.OnFNCODNOTIFICADORChanging(value);
+					this.SendPropertyChanging();
+					this._FNCODNOTIFICADOR = value;
+					this.SendPropertyChanged("FNCODNOTIFICADOR");
+					this.OnFNCODNOTIFICADORChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FANRORESOLUCION", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string FANRORESOLUCION
+		{
+			get
+			{
+				return this._FANRORESOLUCION;
+			}
+			set
+			{
+				if ((this._FANRORESOLUCION != value))
+				{
+					this.OnFANRORESOLUCIONChanging(value);
+					this.SendPropertyChanging();
+					this._FANRORESOLUCION = value;
+					this.SendPropertyChanged("FANRORESOLUCION");
+					this.OnFANRORESOLUCIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIORESOLUCION", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string FAANIORESOLUCION
+		{
+			get
+			{
+				return this._FAANIORESOLUCION;
+			}
+			set
+			{
+				if ((this._FAANIORESOLUCION != value))
+				{
+					this.OnFAANIORESOLUCIONChanging(value);
+					this.SendPropertyChanging();
+					this._FAANIORESOLUCION = value;
+					this.SendPropertyChanged("FAANIORESOLUCION");
+					this.OnFAANIORESOLUCIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIOINICIO", DbType="VarChar(4)")]
+		public string FAANIOINICIO
+		{
+			get
+			{
+				return this._FAANIOINICIO;
+			}
+			set
+			{
+				if ((this._FAANIOINICIO != value))
+				{
+					this.OnFAANIOINICIOChanging(value);
+					this.SendPropertyChanging();
+					this._FAANIOINICIO = value;
+					this.SendPropertyChanged("FAANIOINICIO");
+					this.OnFAANIOINICIOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIOFIN", DbType="VarChar(4)")]
+		public string FAANIOFIN
+		{
+			get
+			{
+				return this._FAANIOFIN;
+			}
+			set
+			{
+				if ((this._FAANIOFIN != value))
+				{
+					this.OnFAANIOFINChanging(value);
+					this.SendPropertyChanging();
+					this._FAANIOFIN = value;
+					this.SendPropertyChanged("FAANIOFIN");
+					this.OnFAANIOFINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREQESTADO", DbType="VarChar(1)")]
+		public string FAREQESTADO
+		{
+			get
+			{
+				return this._FAREQESTADO;
+			}
+			set
+			{
+				if ((this._FAREQESTADO != value))
+				{
+					this.OnFAREQESTADOChanging(value);
+					this.SendPropertyChanging();
+					this._FAREQESTADO = value;
+					this.SendPropertyChanged("FAREQESTADO");
+					this.OnFAREQESTADOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREQCALIFICA", DbType="VarChar(1)")]
+		public string FAREQCALIFICA
+		{
+			get
+			{
+				return this._FAREQCALIFICA;
+			}
+			set
+			{
+				if ((this._FAREQCALIFICA != value))
+				{
+					this.OnFAREQCALIFICAChanging(value);
+					this.SendPropertyChanging();
+					this._FAREQCALIFICA = value;
+					this.SendPropertyChanged("FAREQCALIFICA");
+					this.OnFAREQCALIFICAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIMPINSOLUTO", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> FNIMPINSOLUTO
+		{
+			get
+			{
+				return this._FNIMPINSOLUTO;
+			}
+			set
+			{
+				if ((this._FNIMPINSOLUTO != value))
+				{
+					this.OnFNIMPINSOLUTOChanging(value);
+					this.SendPropertyChanging();
+					this._FNIMPINSOLUTO = value;
+					this.SendPropertyChanged("FNIMPINSOLUTO");
+					this.OnFNIMPINSOLUTOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIMPGASADMIN", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> FNIMPGASADMIN
+		{
+			get
+			{
+				return this._FNIMPGASADMIN;
+			}
+			set
+			{
+				if ((this._FNIMPGASADMIN != value))
+				{
+					this.OnFNIMPGASADMINChanging(value);
+					this.SendPropertyChanging();
+					this._FNIMPGASADMIN = value;
+					this.SendPropertyChanged("FNIMPGASADMIN");
+					this.OnFNIMPGASADMINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIMPMORA", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> FNIMPMORA
+		{
+			get
+			{
+				return this._FNIMPMORA;
+			}
+			set
+			{
+				if ((this._FNIMPMORA != value))
+				{
+					this.OnFNIMPMORAChanging(value);
+					this.SendPropertyChanging();
+					this._FNIMPMORA = value;
+					this.SendPropertyChanged("FNIMPMORA");
+					this.OnFNIMPMORAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIMPCOACT", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> FNIMPCOACT
+		{
+			get
+			{
+				return this._FNIMPCOACT;
+			}
+			set
+			{
+				if ((this._FNIMPCOACT != value))
+				{
+					this.OnFNIMPCOACTChanging(value);
+					this.SendPropertyChanging();
+					this._FNIMPCOACT = value;
+					this.SendPropertyChanged("FNIMPCOACT");
+					this.OnFNIMPCOACTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNCOSPROCE", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> FNCOSPROCE
+		{
+			get
+			{
+				return this._FNCOSPROCE;
+			}
+			set
+			{
+				if ((this._FNCOSPROCE != value))
+				{
+					this.OnFNCOSPROCEChanging(value);
+					this.SendPropertyChanging();
+					this._FNCOSPROCE = value;
+					this.SendPropertyChanged("FNCOSPROCE");
+					this.OnFNCOSPROCEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADOMFISCAL", DbType="VarChar(500)")]
+		public string FADOMFISCAL
+		{
+			get
+			{
+				return this._FADOMFISCAL;
+			}
+			set
+			{
+				if ((this._FADOMFISCAL != value))
+				{
+					this.OnFADOMFISCALChanging(value);
+					this.SendPropertyChanging();
+					this._FADOMFISCAL = value;
+					this.SendPropertyChanged("FADOMFISCAL");
+					this.OnFADOMFISCALChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREFERENC", DbType="VarChar(40)")]
+		public string FAREFERENC
+		{
+			get
+			{
+				return this._FAREFERENC;
+			}
+			set
+			{
+				if ((this._FAREFERENC != value))
+				{
+					this.OnFAREFERENCChanging(value);
+					this.SendPropertyChanging();
+					this._FAREFERENC = value;
+					this.SendPropertyChanged("FAREFERENC");
+					this.OnFAREFERENCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAOBSERVACION", DbType="VarChar(500)")]
+		public string FAOBSERVACION
+		{
+			get
+			{
+				return this._FAOBSERVACION;
+			}
+			set
+			{
+				if ((this._FAOBSERVACION != value))
+				{
+					this.OnFAOBSERVACIONChanging(value);
+					this.SendPropertyChanging();
+					this._FAOBSERVACION = value;
+					this.SendPropertyChanged("FAOBSERVACION");
+					this.OnFAOBSERVACIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECENVIO", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECENVIO
+		{
+			get
+			{
+				return this._FDFECENVIO;
+			}
+			set
+			{
+				if ((this._FDFECENVIO != value))
+				{
+					this.OnFDFECENVIOChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECENVIO = value;
+					this.SendPropertyChanged("FDFECENVIO");
+					this.OnFDFECENVIOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECRECEP", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECRECEP
+		{
+			get
+			{
+				return this._FDFECRECEP;
+			}
+			set
+			{
+				if ((this._FDFECRECEP != value))
+				{
+					this.OnFDFECRECEPChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECRECEP = value;
+					this.SendPropertyChanged("FDFECRECEP");
+					this.OnFDFECRECEPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECCALIF", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECCALIF
+		{
+			get
+			{
+				return this._FDFECCALIF;
+			}
+			set
+			{
+				if ((this._FDFECCALIF != value))
+				{
+					this.OnFDFECCALIFChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECCALIF = value;
+					this.SendPropertyChanged("FDFECCALIF");
+					this.OnFDFECCALIFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECIMPRE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECIMPRE
+		{
+			get
+			{
+				return this._FDFECIMPRE;
+			}
+			set
+			{
+				if ((this._FDFECIMPRE != value))
+				{
+					this.OnFDFECIMPREChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECIMPRE = value;
+					this.SendPropertyChanged("FDFECIMPRE");
+					this.OnFDFECIMPREChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECMODIF", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECMODIF
+		{
+			get
+			{
+				return this._FDFECMODIF;
+			}
+			set
+			{
+				if ((this._FDFECMODIF != value))
+				{
+					this.OnFDFECMODIFChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECMODIF = value;
+					this.SendPropertyChanged("FDFECMODIF");
+					this.OnFDFECMODIFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECNOTIF", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECNOTIF
+		{
+			get
+			{
+				return this._FDFECNOTIF;
+			}
+			set
+			{
+				if ((this._FDFECNOTIF != value))
+				{
+					this.OnFDFECNOTIFChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECNOTIF = value;
+					this.SendPropertyChanged("FDFECNOTIF");
+					this.OnFDFECNOTIFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECVENCI", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECVENCI
+		{
+			get
+			{
+				return this._FDFECVENCI;
+			}
+			set
+			{
+				if ((this._FDFECVENCI != value))
+				{
+					this.OnFDFECVENCIChanging(value);
+					this.SendPropertyChanging();
+					this._FDFECVENCI = value;
+					this.SendPropertyChanged("FDFECVENCI");
+					this.OnFDFECVENCIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNDIASTRANS", DbType="Int")]
+		public System.Nullable<int> FNDIASTRANS
+		{
+			get
+			{
+				return this._FNDIASTRANS;
+			}
+			set
+			{
+				if ((this._FNDIASTRANS != value))
+				{
+					this.OnFNDIASTRANSChanging(value);
+					this.SendPropertyChanging();
+					this._FNDIASTRANS = value;
+					this.SendPropertyChanged("FNDIASTRANS");
+					this.OnFNDIASTRANSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADELETE", DbType="VarChar(1)")]
+		public string FADELETE
+		{
+			get
+			{
+				return this._FADELETE;
+			}
+			set
+			{
+				if ((this._FADELETE != value))
+				{
+					this.OnFADELETEChanging(value);
+					this.SendPropertyChanging();
+					this._FADELETE = value;
+					this.SendPropertyChanged("FADELETE");
+					this.OnFADELETEChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VALORESGEN")]
+	public partial class VALORESGEN
+	{
+		
+		private int _FAANIORESOLUCION;
+		
+		private string _FATRIBUTO;
+		
+		private int _FNNRORESOLUCION;
+		
+		private string _FAIDCIUDADANO;
+		
+		private string _FAAPELLIDOSYNOMBRES;
+		
+		private string _FADIRECCION;
+		
+		private string _FAREFERENCIA;
+		
+		private string _FACODSECTOR;
+		
+		private string _FAESTADOVALOR;
+		
+		private string _FMOBSERVACION;
+		
+		private System.Nullable<int> _FNDIASTRANS;
+		
+		private int _FADESDE;
+		
+		private System.Nullable<int> _FAHASTA;
+		
+		private System.Nullable<System.DateTime> _FDFECHAEMISION;
+		
+		private System.Nullable<System.DateTime> _FDFECHANOTIF;
+		
+		private System.Nullable<System.DateTime> _FDFECHAVENCI;
+		
+		private System.Nullable<System.DateTime> _FDFECHAENVIO;
+		
+		private System.Nullable<System.DateTime> _FDFECHAMODIF;
+		
+		private System.Nullable<int> _FNIDNOTIFICADOR;
+		
+		private System.Nullable<decimal> _FNBASEIMPONIBLE;
+		
+		private System.Nullable<decimal> _FNDEUDAACTUALIZADA;
+		
+		private System.Nullable<System.DateTime> _FDFECHAULTIACTUALIZA;
+		
+		private System.Nullable<decimal> _FNSALDOVALOR;
+		
+		private System.Nullable<decimal> _FNTOTALVALOR;
+		
+		private string _FAOPERADOR;
+		
+		public VALORESGEN()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIORESOLUCION", DbType="Int NOT NULL")]
+		public int FAANIORESOLUCION
+		{
+			get
+			{
+				return this._FAANIORESOLUCION;
+			}
+			set
+			{
+				if ((this._FAANIORESOLUCION != value))
+				{
+					this._FAANIORESOLUCION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FATRIBUTO", DbType="NVarChar(50)")]
+		public string FATRIBUTO
+		{
+			get
+			{
+				return this._FATRIBUTO;
+			}
+			set
+			{
+				if ((this._FATRIBUTO != value))
+				{
+					this._FATRIBUTO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNNRORESOLUCION", DbType="Int NOT NULL")]
+		public int FNNRORESOLUCION
+		{
+			get
+			{
+				return this._FNNRORESOLUCION;
+			}
+			set
+			{
+				if ((this._FNNRORESOLUCION != value))
+				{
+					this._FNNRORESOLUCION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAIDCIUDADANO", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FAIDCIUDADANO
+		{
+			get
+			{
+				return this._FAIDCIUDADANO;
+			}
+			set
+			{
+				if ((this._FAIDCIUDADANO != value))
+				{
+					this._FAIDCIUDADANO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAAPELLIDOSYNOMBRES", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string FAAPELLIDOSYNOMBRES
+		{
+			get
+			{
+				return this._FAAPELLIDOSYNOMBRES;
+			}
+			set
+			{
+				if ((this._FAAPELLIDOSYNOMBRES != value))
+				{
+					this._FAAPELLIDOSYNOMBRES = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADIRECCION", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string FADIRECCION
+		{
+			get
+			{
+				return this._FADIRECCION;
+			}
+			set
+			{
+				if ((this._FADIRECCION != value))
+				{
+					this._FADIRECCION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREFERENCIA", DbType="NVarChar(255)")]
+		public string FAREFERENCIA
+		{
+			get
+			{
+				return this._FAREFERENCIA;
+			}
+			set
+			{
+				if ((this._FAREFERENCIA != value))
+				{
+					this._FAREFERENCIA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACODSECTOR", DbType="NVarChar(50)")]
+		public string FACODSECTOR
+		{
+			get
+			{
+				return this._FACODSECTOR;
+			}
+			set
+			{
+				if ((this._FACODSECTOR != value))
+				{
+					this._FACODSECTOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAESTADOVALOR", DbType="NVarChar(50)")]
+		public string FAESTADOVALOR
+		{
+			get
+			{
+				return this._FAESTADOVALOR;
+			}
+			set
+			{
+				if ((this._FAESTADOVALOR != value))
+				{
+					this._FAESTADOVALOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FMOBSERVACION", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string FMOBSERVACION
+		{
+			get
+			{
+				return this._FMOBSERVACION;
+			}
+			set
+			{
+				if ((this._FMOBSERVACION != value))
+				{
+					this._FMOBSERVACION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNDIASTRANS", DbType="Int")]
+		public System.Nullable<int> FNDIASTRANS
+		{
+			get
+			{
+				return this._FNDIASTRANS;
+			}
+			set
+			{
+				if ((this._FNDIASTRANS != value))
+				{
+					this._FNDIASTRANS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADESDE", DbType="Int NOT NULL")]
+		public int FADESDE
+		{
+			get
+			{
+				return this._FADESDE;
+			}
+			set
+			{
+				if ((this._FADESDE != value))
+				{
+					this._FADESDE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAHASTA", DbType="Int")]
+		public System.Nullable<int> FAHASTA
+		{
+			get
+			{
+				return this._FAHASTA;
+			}
+			set
+			{
+				if ((this._FAHASTA != value))
+				{
+					this._FAHASTA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAEMISION", DbType="Date")]
+		public System.Nullable<System.DateTime> FDFECHAEMISION
+		{
+			get
+			{
+				return this._FDFECHAEMISION;
+			}
+			set
+			{
+				if ((this._FDFECHAEMISION != value))
+				{
+					this._FDFECHAEMISION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHANOTIF", DbType="Date")]
+		public System.Nullable<System.DateTime> FDFECHANOTIF
+		{
+			get
+			{
+				return this._FDFECHANOTIF;
+			}
+			set
+			{
+				if ((this._FDFECHANOTIF != value))
+				{
+					this._FDFECHANOTIF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAVENCI", DbType="Date")]
+		public System.Nullable<System.DateTime> FDFECHAVENCI
+		{
+			get
+			{
+				return this._FDFECHAVENCI;
+			}
+			set
+			{
+				if ((this._FDFECHAVENCI != value))
+				{
+					this._FDFECHAVENCI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAENVIO", DbType="Date")]
+		public System.Nullable<System.DateTime> FDFECHAENVIO
+		{
+			get
+			{
+				return this._FDFECHAENVIO;
+			}
+			set
+			{
+				if ((this._FDFECHAENVIO != value))
+				{
+					this._FDFECHAENVIO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAMODIF", DbType="Date")]
+		public System.Nullable<System.DateTime> FDFECHAMODIF
+		{
+			get
+			{
+				return this._FDFECHAMODIF;
+			}
+			set
+			{
+				if ((this._FDFECHAMODIF != value))
+				{
+					this._FDFECHAMODIF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIDNOTIFICADOR", DbType="Int")]
+		public System.Nullable<int> FNIDNOTIFICADOR
+		{
+			get
+			{
+				return this._FNIDNOTIFICADOR;
+			}
+			set
+			{
+				if ((this._FNIDNOTIFICADOR != value))
+				{
+					this._FNIDNOTIFICADOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNBASEIMPONIBLE", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNBASEIMPONIBLE
+		{
+			get
+			{
+				return this._FNBASEIMPONIBLE;
+			}
+			set
+			{
+				if ((this._FNBASEIMPONIBLE != value))
+				{
+					this._FNBASEIMPONIBLE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNDEUDAACTUALIZADA", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNDEUDAACTUALIZADA
+		{
+			get
+			{
+				return this._FNDEUDAACTUALIZADA;
+			}
+			set
+			{
+				if ((this._FNDEUDAACTUALIZADA != value))
+				{
+					this._FNDEUDAACTUALIZADA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAULTIACTUALIZA", DbType="Date")]
+		public System.Nullable<System.DateTime> FDFECHAULTIACTUALIZA
+		{
+			get
+			{
+				return this._FDFECHAULTIACTUALIZA;
+			}
+			set
+			{
+				if ((this._FDFECHAULTIACTUALIZA != value))
+				{
+					this._FDFECHAULTIACTUALIZA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNSALDOVALOR", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNSALDOVALOR
+		{
+			get
+			{
+				return this._FNSALDOVALOR;
+			}
+			set
+			{
+				if ((this._FNSALDOVALOR != value))
+				{
+					this._FNSALDOVALOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNTOTALVALOR", DbType="Money")]
+		public System.Nullable<decimal> FNTOTALVALOR
+		{
+			get
+			{
+				return this._FNTOTALVALOR;
+			}
+			set
+			{
+				if ((this._FNTOTALVALOR != value))
+				{
+					this._FNTOTALVALOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAOPERADOR", DbType="VarChar(50)")]
+		public string FAOPERADOR
+		{
+			get
+			{
+				return this._FAOPERADOR;
+			}
+			set
+			{
+				if ((this._FAOPERADOR != value))
+				{
+					this._FAOPERADOR = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VALORESDET")]
 	public partial class VALORESDET
 	{
@@ -275,6 +1704,8 @@ namespace SISCONVAL
 		private string _FAAPELLIDOSYNOMBRES;
 		
 		private string _FADIRECCION;
+		
+		private string _FAREFERENCIA;
 		
 		private System.Nullable<decimal> _FNBASEIMPDEC;
 		
@@ -300,7 +1731,11 @@ namespace SISCONVAL
 		
 		private string _FAESTADORD;
 		
-		private System.DateTime _FDFECHAGENERACION;
+		private System.Nullable<System.DateTime> _FDFECHAGENERACION;
+		
+		private System.Nullable<System.DateTime> _FDFECHAMODIF;
+		
+		private string _FAOPERADOR;
 		
 		public VALORESDET()
 		{
@@ -398,6 +1833,22 @@ namespace SISCONVAL
 				if ((this._FADIRECCION != value))
 				{
 					this._FADIRECCION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREFERENCIA", DbType="NVarChar(255)")]
+		public string FAREFERENCIA
+		{
+			get
+			{
+				return this._FAREFERENCIA;
+			}
+			set
+			{
+				if ((this._FAREFERENCIA != value))
+				{
+					this._FAREFERENCIA = value;
 				}
 			}
 		}
@@ -594,8 +2045,8 @@ namespace SISCONVAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAGENERACION", DbType="DateTime2 NOT NULL")]
-		public System.DateTime FDFECHAGENERACION
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAGENERACION", DbType="DateTime2")]
+		public System.Nullable<System.DateTime> FDFECHAGENERACION
 		{
 			get
 			{
@@ -609,313 +2060,8 @@ namespace SISCONVAL
 				}
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VALORESGEN")]
-	public partial class VALORESGEN
-	{
 		
-		private int _FAANIORESOLUCION;
-		
-		private string _FATRIBUTO;
-		
-		private int _FNNRORESOLUCION;
-		
-		private string _FAIDCIUDADANO;
-		
-		private string _FAAPELLIDOSYNOMBRES;
-		
-		private string _FADIRECCION;
-		
-		private string _FAREFERENCIA;
-		
-		private string _FACODSECTOR;
-		
-		private string _FAESTADOVALOR;
-		
-		private string _FMOBSERVACION;
-		
-		private int _FADESDE;
-		
-		private System.Nullable<int> _FAHASTA;
-		
-		private System.Nullable<System.DateTime> _FDFECHAEMISION;
-		
-		private System.Nullable<System.DateTime> _FDFECHANOTIF;
-		
-		private System.Nullable<System.DateTime> _FDFECHAVENCI;
-		
-		private System.Nullable<System.DateTime> _FDFECHAENVIO;
-		
-		private System.Nullable<System.DateTime> _FDFECHAMODIF;
-		
-		private System.Nullable<int> _FNIDNOTIFICADOR;
-		
-		private System.Nullable<decimal> _FNBASEIMPONIBLE;
-		
-		private System.Nullable<decimal> _FNTOTALVALOR;
-		
-		public VALORESGEN()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIORESOLUCION", DbType="Int NOT NULL")]
-		public int FAANIORESOLUCION
-		{
-			get
-			{
-				return this._FAANIORESOLUCION;
-			}
-			set
-			{
-				if ((this._FAANIORESOLUCION != value))
-				{
-					this._FAANIORESOLUCION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FATRIBUTO", DbType="NVarChar(50)")]
-		public string FATRIBUTO
-		{
-			get
-			{
-				return this._FATRIBUTO;
-			}
-			set
-			{
-				if ((this._FATRIBUTO != value))
-				{
-					this._FATRIBUTO = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNNRORESOLUCION", DbType="Int NOT NULL")]
-		public int FNNRORESOLUCION
-		{
-			get
-			{
-				return this._FNNRORESOLUCION;
-			}
-			set
-			{
-				if ((this._FNNRORESOLUCION != value))
-				{
-					this._FNNRORESOLUCION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAIDCIUDADANO", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string FAIDCIUDADANO
-		{
-			get
-			{
-				return this._FAIDCIUDADANO;
-			}
-			set
-			{
-				if ((this._FAIDCIUDADANO != value))
-				{
-					this._FAIDCIUDADANO = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAAPELLIDOSYNOMBRES", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string FAAPELLIDOSYNOMBRES
-		{
-			get
-			{
-				return this._FAAPELLIDOSYNOMBRES;
-			}
-			set
-			{
-				if ((this._FAAPELLIDOSYNOMBRES != value))
-				{
-					this._FAAPELLIDOSYNOMBRES = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADIRECCION", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string FADIRECCION
-		{
-			get
-			{
-				return this._FADIRECCION;
-			}
-			set
-			{
-				if ((this._FADIRECCION != value))
-				{
-					this._FADIRECCION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREFERENCIA", DbType="NVarChar(255)")]
-		public string FAREFERENCIA
-		{
-			get
-			{
-				return this._FAREFERENCIA;
-			}
-			set
-			{
-				if ((this._FAREFERENCIA != value))
-				{
-					this._FAREFERENCIA = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACODSECTOR", DbType="NVarChar(50)")]
-		public string FACODSECTOR
-		{
-			get
-			{
-				return this._FACODSECTOR;
-			}
-			set
-			{
-				if ((this._FACODSECTOR != value))
-				{
-					this._FACODSECTOR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAESTADOVALOR", DbType="NVarChar(50)")]
-		public string FAESTADOVALOR
-		{
-			get
-			{
-				return this._FAESTADOVALOR;
-			}
-			set
-			{
-				if ((this._FAESTADOVALOR != value))
-				{
-					this._FAESTADOVALOR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FMOBSERVACION", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string FMOBSERVACION
-		{
-			get
-			{
-				return this._FMOBSERVACION;
-			}
-			set
-			{
-				if ((this._FMOBSERVACION != value))
-				{
-					this._FMOBSERVACION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADESDE", DbType="Int NOT NULL")]
-		public int FADESDE
-		{
-			get
-			{
-				return this._FADESDE;
-			}
-			set
-			{
-				if ((this._FADESDE != value))
-				{
-					this._FADESDE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAHASTA", DbType="Int")]
-		public System.Nullable<int> FAHASTA
-		{
-			get
-			{
-				return this._FAHASTA;
-			}
-			set
-			{
-				if ((this._FAHASTA != value))
-				{
-					this._FAHASTA = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAEMISION", DbType="Date")]
-		public System.Nullable<System.DateTime> FDFECHAEMISION
-		{
-			get
-			{
-				return this._FDFECHAEMISION;
-			}
-			set
-			{
-				if ((this._FDFECHAEMISION != value))
-				{
-					this._FDFECHAEMISION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHANOTIF", DbType="Date")]
-		public System.Nullable<System.DateTime> FDFECHANOTIF
-		{
-			get
-			{
-				return this._FDFECHANOTIF;
-			}
-			set
-			{
-				if ((this._FDFECHANOTIF != value))
-				{
-					this._FDFECHANOTIF = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAVENCI", DbType="Date")]
-		public System.Nullable<System.DateTime> FDFECHAVENCI
-		{
-			get
-			{
-				return this._FDFECHAVENCI;
-			}
-			set
-			{
-				if ((this._FDFECHAVENCI != value))
-				{
-					this._FDFECHAVENCI = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAENVIO", DbType="Date")]
-		public System.Nullable<System.DateTime> FDFECHAENVIO
-		{
-			get
-			{
-				return this._FDFECHAENVIO;
-			}
-			set
-			{
-				if ((this._FDFECHAENVIO != value))
-				{
-					this._FDFECHAENVIO = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAMODIF", DbType="Date")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAMODIF", DbType="DateTime")]
 		public System.Nullable<System.DateTime> FDFECHAMODIF
 		{
 			get
@@ -931,18 +2077,153 @@ namespace SISCONVAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIDNOTIFICADOR", DbType="Int")]
-		public System.Nullable<int> FNIDNOTIFICADOR
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAOPERADOR", DbType="VarChar(50)")]
+		public string FAOPERADOR
 		{
 			get
 			{
-				return this._FNIDNOTIFICADOR;
+				return this._FAOPERADOR;
 			}
 			set
 			{
-				if ((this._FNIDNOTIFICADOR != value))
+				if ((this._FAOPERADOR != value))
 				{
-					this._FNIDNOTIFICADOR = value;
+					this._FAOPERADOR = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ORDENESPAGOGEN")]
+	public partial class ORDENESPAGOGEN
+	{
+		
+		private string _FAANIOOP;
+		
+		private int _FNNROOP;
+		
+		private string _FAIDCIUDADANO;
+		
+		private string _FANOMBRES;
+		
+		private string _FADOMICILIO;
+		
+		private System.Nullable<decimal> _FNBASEIMPONIBLE;
+		
+		private string _FAPERIODOS;
+		
+		private System.Nullable<decimal> _FNINSOLUTO;
+		
+		private System.Nullable<decimal> _FNGASADMIN;
+		
+		private System.Nullable<decimal> _FNMORA;
+		
+		private System.Nullable<decimal> _FNTOTAL;
+		
+		private System.Nullable<System.DateTime> _FDFECHAGENERACION;
+		
+		private string _FAESTADOOP;
+		
+		private System.Nullable<System.DateTime> _FDFECHANOTIF;
+		
+		private System.Nullable<System.DateTime> _FDFECHAVENCI;
+		
+		private System.Nullable<System.DateTime> _FDFECHAENVIO;
+		
+		private string _FAOBSERVACION;
+		
+		private System.Nullable<int> _FNIDNOTIFICADOR;
+		
+		private System.Nullable<System.DateTime> _FDFECHAMODIF;
+		
+		private string _FAOPERADOR;
+		
+		private System.Nullable<System.DateTime> _FDFECHAULTIACTUALIZA;
+		
+		private System.Nullable<decimal> _FNIMPPAGADOFECHACT;
+		
+		private System.Nullable<decimal> _FNIMPPENDIENTFECHAACT;
+		
+		public ORDENESPAGOGEN()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIOOP", DbType="VarChar(4)")]
+		public string FAANIOOP
+		{
+			get
+			{
+				return this._FAANIOOP;
+			}
+			set
+			{
+				if ((this._FAANIOOP != value))
+				{
+					this._FAANIOOP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNNROOP", DbType="Int NOT NULL")]
+		public int FNNROOP
+		{
+			get
+			{
+				return this._FNNROOP;
+			}
+			set
+			{
+				if ((this._FNNROOP != value))
+				{
+					this._FNNROOP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAIDCIUDADANO", DbType="NVarChar(9)")]
+		public string FAIDCIUDADANO
+		{
+			get
+			{
+				return this._FAIDCIUDADANO;
+			}
+			set
+			{
+				if ((this._FAIDCIUDADANO != value))
+				{
+					this._FAIDCIUDADANO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FANOMBRES", DbType="NVarChar(255)")]
+		public string FANOMBRES
+		{
+			get
+			{
+				return this._FANOMBRES;
+			}
+			set
+			{
+				if ((this._FANOMBRES != value))
+				{
+					this._FANOMBRES = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FADOMICILIO", DbType="NVarChar(255)")]
+		public string FADOMICILIO
+		{
+			get
+			{
+				return this._FADOMICILIO;
+			}
+			set
+			{
+				if ((this._FADOMICILIO != value))
+				{
+					this._FADOMICILIO = value;
 				}
 			}
 		}
@@ -963,18 +2244,705 @@ namespace SISCONVAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNTOTALVALOR", DbType="Money")]
-		public System.Nullable<decimal> FNTOTALVALOR
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAPERIODOS", DbType="VarChar(4)")]
+		public string FAPERIODOS
 		{
 			get
 			{
-				return this._FNTOTALVALOR;
+				return this._FAPERIODOS;
 			}
 			set
 			{
-				if ((this._FNTOTALVALOR != value))
+				if ((this._FAPERIODOS != value))
 				{
-					this._FNTOTALVALOR = value;
+					this._FAPERIODOS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNINSOLUTO", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNINSOLUTO
+		{
+			get
+			{
+				return this._FNINSOLUTO;
+			}
+			set
+			{
+				if ((this._FNINSOLUTO != value))
+				{
+					this._FNINSOLUTO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNGASADMIN", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNGASADMIN
+		{
+			get
+			{
+				return this._FNGASADMIN;
+			}
+			set
+			{
+				if ((this._FNGASADMIN != value))
+				{
+					this._FNGASADMIN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNMORA", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNMORA
+		{
+			get
+			{
+				return this._FNMORA;
+			}
+			set
+			{
+				if ((this._FNMORA != value))
+				{
+					this._FNMORA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNTOTAL", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNTOTAL
+		{
+			get
+			{
+				return this._FNTOTAL;
+			}
+			set
+			{
+				if ((this._FNTOTAL != value))
+				{
+					this._FNTOTAL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAGENERACION", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECHAGENERACION
+		{
+			get
+			{
+				return this._FDFECHAGENERACION;
+			}
+			set
+			{
+				if ((this._FDFECHAGENERACION != value))
+				{
+					this._FDFECHAGENERACION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAESTADOOP", DbType="VarChar(50)")]
+		public string FAESTADOOP
+		{
+			get
+			{
+				return this._FAESTADOOP;
+			}
+			set
+			{
+				if ((this._FAESTADOOP != value))
+				{
+					this._FAESTADOOP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHANOTIF", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECHANOTIF
+		{
+			get
+			{
+				return this._FDFECHANOTIF;
+			}
+			set
+			{
+				if ((this._FDFECHANOTIF != value))
+				{
+					this._FDFECHANOTIF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAVENCI", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECHAVENCI
+		{
+			get
+			{
+				return this._FDFECHAVENCI;
+			}
+			set
+			{
+				if ((this._FDFECHAVENCI != value))
+				{
+					this._FDFECHAVENCI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAENVIO", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECHAENVIO
+		{
+			get
+			{
+				return this._FDFECHAENVIO;
+			}
+			set
+			{
+				if ((this._FDFECHAENVIO != value))
+				{
+					this._FDFECHAENVIO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAOBSERVACION", DbType="VarChar(255)")]
+		public string FAOBSERVACION
+		{
+			get
+			{
+				return this._FAOBSERVACION;
+			}
+			set
+			{
+				if ((this._FAOBSERVACION != value))
+				{
+					this._FAOBSERVACION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIDNOTIFICADOR", DbType="Int")]
+		public System.Nullable<int> FNIDNOTIFICADOR
+		{
+			get
+			{
+				return this._FNIDNOTIFICADOR;
+			}
+			set
+			{
+				if ((this._FNIDNOTIFICADOR != value))
+				{
+					this._FNIDNOTIFICADOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAMODIF", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECHAMODIF
+		{
+			get
+			{
+				return this._FDFECHAMODIF;
+			}
+			set
+			{
+				if ((this._FDFECHAMODIF != value))
+				{
+					this._FDFECHAMODIF = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAOPERADOR", DbType="VarChar(50)")]
+		public string FAOPERADOR
+		{
+			get
+			{
+				return this._FAOPERADOR;
+			}
+			set
+			{
+				if ((this._FAOPERADOR != value))
+				{
+					this._FAOPERADOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAULTIACTUALIZA", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FDFECHAULTIACTUALIZA
+		{
+			get
+			{
+				return this._FDFECHAULTIACTUALIZA;
+			}
+			set
+			{
+				if ((this._FDFECHAULTIACTUALIZA != value))
+				{
+					this._FDFECHAULTIACTUALIZA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIMPPAGADOFECHACT", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNIMPPAGADOFECHACT
+		{
+			get
+			{
+				return this._FNIMPPAGADOFECHACT;
+			}
+			set
+			{
+				if ((this._FNIMPPAGADOFECHACT != value))
+				{
+					this._FNIMPPAGADOFECHACT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FNIMPPENDIENTFECHAACT", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> FNIMPPENDIENTFECHAACT
+		{
+			get
+			{
+				return this._FNIMPPENDIENTFECHAACT;
+			}
+			set
+			{
+				if ((this._FNIMPPENDIENTFECHAACT != value))
+				{
+					this._FNIMPPENDIENTFECHAACT = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ESTADORD")]
+	public partial class ESTADORD
+	{
+		
+		private string _facodestadord;
+		
+		private string _fadesestado;
+		
+		public ESTADORD()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facodestadord", DbType="VarChar(1)")]
+		public string facodestadord
+		{
+			get
+			{
+				return this._facodestadord;
+			}
+			set
+			{
+				if ((this._facodestadord != value))
+				{
+					this._facodestadord = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fadesestado", DbType="VarChar(200)")]
+		public string fadesestado
+		{
+			get
+			{
+				return this._fadesestado;
+			}
+			set
+			{
+				if ((this._fadesestado != value))
+				{
+					this._fadesestado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL_PREVIEWResult
+	{
+		
+		private System.Nullable<int> _FAANIORESOLUCION;
+		
+		private System.Nullable<int> _FANRORESOLUCION;
+		
+		private string _ANIO;
+		
+		private string _IdCiudadano;
+		
+		private string _ApellidosyNombres;
+		
+		private string _DomicilioFiscalyNumero;
+		
+		private string _FAREFERENCIA;
+		
+		private System.Nullable<decimal> _BASEIMPONIBLEDECLA;
+		
+		private System.Nullable<decimal> _BASEIMPONIBLEFISCA;
+		
+		private System.Nullable<decimal> _INSOLUTO;
+		
+		private System.Nullable<decimal> _INSOLUTOFISCA;
+		
+		private decimal _PAGADO;
+		
+		private System.Nullable<decimal> _PENDIENTE;
+		
+		private decimal _FACTOR;
+		
+		private decimal _TIM;
+		
+		private System.Nullable<decimal> _MORA;
+		
+		private System.Nullable<decimal> _GASADMIN;
+		
+		private System.Nullable<decimal> _TOTALRD;
+		
+		private string _FAESTADORD;
+		
+		private System.DateTime _FDFECHAGENERACION;
+		
+		private System.Nullable<int> _FDFECHAMODIF;
+		
+		public PA_CONTROLDEUDA_GENERARVALOR_INDIVIDUAL_PREVIEWResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAANIORESOLUCION", DbType="Int")]
+		public System.Nullable<int> FAANIORESOLUCION
+		{
+			get
+			{
+				return this._FAANIORESOLUCION;
+			}
+			set
+			{
+				if ((this._FAANIORESOLUCION != value))
+				{
+					this._FAANIORESOLUCION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FANRORESOLUCION", DbType="Int")]
+		public System.Nullable<int> FANRORESOLUCION
+		{
+			get
+			{
+				return this._FANRORESOLUCION;
+			}
+			set
+			{
+				if ((this._FANRORESOLUCION != value))
+				{
+					this._FANRORESOLUCION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ANIO", DbType="NVarChar(4)")]
+		public string ANIO
+		{
+			get
+			{
+				return this._ANIO;
+			}
+			set
+			{
+				if ((this._ANIO != value))
+				{
+					this._ANIO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCiudadano", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string IdCiudadano
+		{
+			get
+			{
+				return this._IdCiudadano;
+			}
+			set
+			{
+				if ((this._IdCiudadano != value))
+				{
+					this._IdCiudadano = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApellidosyNombres", DbType="NVarChar(100)")]
+		public string ApellidosyNombres
+		{
+			get
+			{
+				return this._ApellidosyNombres;
+			}
+			set
+			{
+				if ((this._ApellidosyNombres != value))
+				{
+					this._ApellidosyNombres = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomicilioFiscalyNumero", DbType="NVarChar(100)")]
+		public string DomicilioFiscalyNumero
+		{
+			get
+			{
+				return this._DomicilioFiscalyNumero;
+			}
+			set
+			{
+				if ((this._DomicilioFiscalyNumero != value))
+				{
+					this._DomicilioFiscalyNumero = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAREFERENCIA", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string FAREFERENCIA
+		{
+			get
+			{
+				return this._FAREFERENCIA;
+			}
+			set
+			{
+				if ((this._FAREFERENCIA != value))
+				{
+					this._FAREFERENCIA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BASEIMPONIBLEDECLA", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BASEIMPONIBLEDECLA
+		{
+			get
+			{
+				return this._BASEIMPONIBLEDECLA;
+			}
+			set
+			{
+				if ((this._BASEIMPONIBLEDECLA != value))
+				{
+					this._BASEIMPONIBLEDECLA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BASEIMPONIBLEFISCA", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BASEIMPONIBLEFISCA
+		{
+			get
+			{
+				return this._BASEIMPONIBLEFISCA;
+			}
+			set
+			{
+				if ((this._BASEIMPONIBLEFISCA != value))
+				{
+					this._BASEIMPONIBLEFISCA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INSOLUTO", DbType="Money")]
+		public System.Nullable<decimal> INSOLUTO
+		{
+			get
+			{
+				return this._INSOLUTO;
+			}
+			set
+			{
+				if ((this._INSOLUTO != value))
+				{
+					this._INSOLUTO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INSOLUTOFISCA", DbType="Money")]
+		public System.Nullable<decimal> INSOLUTOFISCA
+		{
+			get
+			{
+				return this._INSOLUTOFISCA;
+			}
+			set
+			{
+				if ((this._INSOLUTOFISCA != value))
+				{
+					this._INSOLUTOFISCA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PAGADO", DbType="Decimal(1,1) NOT NULL")]
+		public decimal PAGADO
+		{
+			get
+			{
+				return this._PAGADO;
+			}
+			set
+			{
+				if ((this._PAGADO != value))
+				{
+					this._PAGADO = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PENDIENTE", DbType="Money")]
+		public System.Nullable<decimal> PENDIENTE
+		{
+			get
+			{
+				return this._PENDIENTE;
+			}
+			set
+			{
+				if ((this._PENDIENTE != value))
+				{
+					this._PENDIENTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACTOR", DbType="Decimal(1,1) NOT NULL")]
+		public decimal FACTOR
+		{
+			get
+			{
+				return this._FACTOR;
+			}
+			set
+			{
+				if ((this._FACTOR != value))
+				{
+					this._FACTOR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TIM", DbType="Decimal(1,1) NOT NULL")]
+		public decimal TIM
+		{
+			get
+			{
+				return this._TIM;
+			}
+			set
+			{
+				if ((this._TIM != value))
+				{
+					this._TIM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MORA", DbType="Money")]
+		public System.Nullable<decimal> MORA
+		{
+			get
+			{
+				return this._MORA;
+			}
+			set
+			{
+				if ((this._MORA != value))
+				{
+					this._MORA = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GASADMIN", DbType="Money")]
+		public System.Nullable<decimal> GASADMIN
+		{
+			get
+			{
+				return this._GASADMIN;
+			}
+			set
+			{
+				if ((this._GASADMIN != value))
+				{
+					this._GASADMIN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALRD", DbType="Money")]
+		public System.Nullable<decimal> TOTALRD
+		{
+			get
+			{
+				return this._TOTALRD;
+			}
+			set
+			{
+				if ((this._TOTALRD != value))
+				{
+					this._TOTALRD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAESTADORD", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string FAESTADORD
+		{
+			get
+			{
+				return this._FAESTADORD;
+			}
+			set
+			{
+				if ((this._FAESTADORD != value))
+				{
+					this._FAESTADORD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAGENERACION", DbType="DateTime NOT NULL")]
+		public System.DateTime FDFECHAGENERACION
+		{
+			get
+			{
+				return this._FDFECHAGENERACION;
+			}
+			set
+			{
+				if ((this._FDFECHAGENERACION != value))
+				{
+					this._FDFECHAGENERACION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDFECHAMODIF", DbType="Int")]
+		public System.Nullable<int> FDFECHAMODIF
+		{
+			get
+			{
+				return this._FDFECHAMODIF;
+			}
+			set
+			{
+				if ((this._FDFECHAMODIF != value))
+				{
+					this._FDFECHAMODIF = value;
 				}
 			}
 		}

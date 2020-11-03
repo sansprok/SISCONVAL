@@ -16,7 +16,13 @@ namespace SISCONVAL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new frmPrincipal());
+            // Application.Run(new frmControlDeuda());
+            //Application.Run(new frmCoactivaControl());
+            // Application.Run(new frmResolucion());
+            Application.Run(new frmGenerarRDByCodigo());
+           //Application.Run(new frmGenerarRDByCodigo("00037214T", "2020","ECUSI"));
+            //Application.Run(new FrmReportCrisResolucionIniciocs(1700, "00002295H","1"));
         }
     }
 }
